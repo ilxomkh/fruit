@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fruit UI">
+  <defs>
+    <linearGradient id="fruitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop stop-color="#FF3D5A" offset="0%"/>
+      <stop stop-color="#FF7A18" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="26" fill="url(#fruitGradient)"/>
+  <path d="M24 18c2 4 6 6 10 5 1-4-1-8-5-10-2 1-4 3-5 5z" fill="#5BD46C"/>
+  <path d="M20 26c6 0 10 4 10 10s-4 10-10 10c-5 0-9-4-9-10s4-10 9-10zm9 1c7 0 13 6 13 13s-6 13-13 13c-6 0-11-5-11-13s5-13 11-13z" fill="#fff" opacity=".85"/>
+</svg>
+
