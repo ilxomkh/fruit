@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronUp, ChevronRightIcon } from 'lucide-react';
 import { useLocale } from '../i18n.jsx';
 import logo from '../assets/logo.svg';
@@ -11,6 +11,7 @@ const languages = [
 
 export default function Header() {
   const { t, locale, setLocale } = useLocale();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [productMenuWidth, setProductMenuWidth] = useState(null);
@@ -31,7 +32,7 @@ export default function Header() {
     label: item,
     featured: idx === 0,
     hasDropdown: idx === 2,
-    url: idx === 0 ? '/' : idx === 1 ? '/aboutus' : null,
+    url: idx === 0 ? '/' : idx === 1 ? '/aboutus' : idx === 3 ? '/export' : idx === 4 ? '/import' : idx === 5 ? '/contact' : null,
   }));
 
   useEffect(() => {
@@ -72,7 +73,7 @@ export default function Header() {
   const NavLinks = ({ className, onSelect, variant = 'desktop' }) => (
     <div className={className}>
       {navigation.map((item, idx) => {
-        const isActive = idx === 0;
+        const isActive = idx === 0 ? location.pathname === '/' : location.pathname === item.url;
         const base =
           'flex items-center justify-center gap-2 rounded-full px-3.5 py-2 transition text-[12px] font-semibold uppercase tracking-[0.18em]';
         const inactive = 'text-[#0b1c2c] hover:text-[#02101d] bg-white/70';
@@ -211,25 +212,24 @@ export default function Header() {
           <div className="glass-specular" />
           <nav className="glass-content flex flex-nowrap items-center justify-between gap-4 px-5 py-3 text-white lg:px-8">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 shadow-lg shadow-slate-900/40">
-                <img src={logo} alt="Fruit UI" className="h-9 w-9" />
+              <div className="flex items-center justify-center">
+                <img src={logo} alt="Fruit UI" className="h-12 w-12" />
               </div>
-              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-white">
-                Fruit UI
-              </span>
             </div>
 
             <NavLinks className="hidden items-center gap-3 lg:flex" variant="desktop" />
 
-            <LanguageToggle className="hidden shrink-0 lg:inline-flex" />
-
-            <button
-              className="rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-sm text-white/90 backdrop-blur-xl transition hover:border-white/60 lg:hidden"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Toggle navigation"
-            >
-              ☰
-            </button>
+            <div className="flex items-center gap-2">
+              <LanguageToggle className="inline-flex shrink-0 lg:hidden" />
+              <LanguageToggle className="hidden shrink-0 lg:inline-flex" />
+              <button
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/80 text-[16px] font-semibold text-[#0b1c2c] backdrop-blur-md transition hover:border-white lg:hidden"
+                onClick={() => setMenuOpen((prev) => !prev)}
+                aria-label="Toggle navigation"
+              >
+                ☰
+              </button>
+            </div>
           </nav>
         </div>
 
@@ -243,7 +243,6 @@ export default function Header() {
                 onSelect={() => setMenuOpen(false)}
                 variant="mobile"
               />
-              <LanguageToggle className="mx-auto inline-flex" />
             </div>
           </div>
         )}

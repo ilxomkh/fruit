@@ -15,7 +15,7 @@ export default function Footer() {
   const infoLinks = [
     { label: t.footer?.links?.aboutUs || 'About Us', to: '/aboutus' },
     { label: t.footer?.links?.products || 'Products', to: '/products/fruits' },
-    { label: t.footer?.links?.export || 'Export', to: '/products/fruits' },
+    { label: t.footer?.links?.export || 'Export', to: '/export' },
     { label: t.footer?.links?.import || 'Import', to: '/products/vegetables' },
     { label: t.footer?.links?.contacts || 'Contacts', to: '/contact' },
   ];

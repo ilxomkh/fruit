@@ -10,8 +10,13 @@ export default function WhyChooseUs() {
         <h2 className="text-4xl font-bold text-[#0b2c3c] sm:text-5xl">{t.why.title}</h2>
         <div className="mt-14 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
           {t.why.items.map((item) => (
-            <div key={item.title} className="flex flex-col gap-4 rounded-3xl p-6 bg-white/90">
-              <img src={leafIcon} alt="" className="h-10 w-10" aria-hidden="true" />
+            <div
+              key={item.title}
+              className="why-card flex flex-col gap-4 rounded-3xl p-6 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
+            >
+              <div className="why-card__icon">
+                <img src={leafIcon} alt="" className="h-6 w-6" aria-hidden="true" />
+              </div>
               <div>
                 <h3 className="text-lg font-semibold text-[#103347]">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#294b5b]">{item.description}</p>
