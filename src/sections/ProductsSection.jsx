@@ -23,11 +23,8 @@ export default function ProductsSection() {
   const { t } = useLocale();
 
   return (
-    <section id="products" className="w-full bg-white py-10">
+    <section id="products" className="w-full bg-white py-10 pb-20">
       <div className="mx-auto w-full max-w-7xl px-6 text-center lg:px-10">
-        <h2 className="text-4xl font-bold text-[#0b2c3c] sm:text-5xl">{t.products.title}</h2>
-        <p className="mx-auto mt-4 max-w-3xl text-base text-[#173347] sm:text-lg">{t.products.subtitle}</p>
-
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {cardsConfig.map((card) => {
             const copy = t.products.cards[card.key];

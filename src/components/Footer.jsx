@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../i18n.jsx';
 
@@ -21,17 +21,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-[#012b3a] via-[#011f2a] to-[#00151d] text-white overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#f12f49] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f12f49] rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      </div>
-
+    <footer className="relative bg-[#0b1c2c] text-white overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b1c2c]/50 to-[#0b1c2c] pointer-events-none"></div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        {/* Main footer content */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-          {/* Social Media Section */}
           <div className="space-y-4">
             <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-[#f12f49]">
               {t.footer?.socialMedia || 'Social Media'}
@@ -47,9 +40,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className="group flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm text-white/80 transition-all duration-300 hover:border-[#f12f49] hover:bg-[#f12f49]/20 hover:text-white hover:scale-110 hover:shadow-lg hover:shadow-[#f12f49]/30"
+                  className="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-md text-white/80 transition-all duration-500 hover:border-[#f12f49] hover:bg-[#f12f49]/30 hover:text-white hover:scale-110 hover:shadow-xl hover:shadow-[#f12f49]/40 hover:-translate-y-1"
                 >
-                  <Icon className="h-5 w-5 transition-transform group-hover:scale-110" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#f12f49]/0 to-[#e31837]/0 group-hover:from-[#f12f49]/20 group-hover:to-[#e31837]/20 transition-all duration-500"></div>
+                  <Icon className="relative z-10 h-5 w-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" />
                 </a>
               ))}
             </div>
@@ -85,11 +79,11 @@ export default function Footer() {
               {t.footer?.contacts || 'Contacts'}
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49]">
+              <div className="group flex items-start gap-3 transition-all duration-300">
+                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49] transition-all duration-300 group-hover:bg-[#f12f49]/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#f12f49]/30">
                   <MapPin className="h-4 w-4" />
                 </div>
-                <p className="text-sm leading-relaxed text-white/70">
+                <p className="text-sm leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-white/90">
                   {t.footer?.address || '838, Vark Street, Vark Neighborhood, Navoi Region, Uzbekistan'}
                 </p>
               </div>
@@ -98,7 +92,7 @@ export default function Footer() {
                 href="tel:+998944466888"
                 className="group flex items-center gap-3 text-sm text-white/70 transition-all duration-300 hover:text-white"
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49] transition-all duration-300 group-hover:bg-[#f12f49]/30">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49] transition-all duration-300 group-hover:bg-[#f12f49]/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#f12f49]/30">
                   <Phone className="h-4 w-4" />
                 </div>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -110,7 +104,7 @@ export default function Footer() {
                 href="mailto:info@fruitexim.com"
                 className="group flex items-center gap-3 text-sm text-white/70 transition-all duration-300 hover:text-white"
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49] transition-all duration-300 group-hover:bg-[#f12f49]/30">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#f12f49]/20 text-[#f12f49] transition-all duration-300 group-hover:bg-[#f12f49]/30 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#f12f49]/30">
                   <Mail className="h-4 w-4" />
                 </div>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -133,6 +127,32 @@ export default function Footer() {
             >
               {t.footer?.privacyPolicy || 'Privacy Policy'}
             </Link>
+          </div>
+          
+          {/* Developers section */}
+          <div className="mt-6 pt-2 border-t border-white/5">
+            <div className="flex flex-wrap items-baseline gap-1 text-[10px] text-white/40">
+              <span>Разработали:</span>
+              <a
+                href="https://github.com/ilxomkh"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-white/50 hover:text-[#f12f49] transition-colors duration-300 hover:underline underline-offset-2"
+              >
+                <Github className="h-3 w-3" />
+                <span>ilxomkh</span>
+              </a>
+              <span>и</span>
+              <a
+                href="https://github.com/thehokim"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-white/50 hover:text-[#f12f49] transition-colors duration-300 hover:underline underline-offset-2"
+              >
+                <Github className="h-3 w-3" />
+                <span>thehokim</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

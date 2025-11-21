@@ -80,7 +80,7 @@ export const locales = {
       },
     },
     products: {
-      title: 'Наши продукты',
+      title: 'Продукты',
       subtitle:
         'Выбирая нас, вы получаете не только вкусные и полезные продукты, но и уверенность в их качестве и безопасности.',
       hero: {
@@ -576,7 +576,7 @@ export const locales = {
       },
     },
     products: {
-      title: 'Mahsulotlarimiz',
+      title: 'Mahsulotlar',
       subtitle:
         'Bizni tanlab, siz nafaqat mazali va sog‘lom mahsulotlarni, balki ularning sifat va xavfsizligiga bo‘lgan ishonchni ham olasiz.',
       hero: {

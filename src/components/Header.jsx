@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronUp, ChevronRightIcon } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 import { useLocale } from '../i18n.jsx';
 import logo from '../assets/logo.svg';
 
@@ -67,19 +67,24 @@ export default function Header() {
     if (hoverTimeout.current) {
       clearTimeout(hoverTimeout.current);
     }
-    hoverTimeout.current = setTimeout(() => setProductsOpen(false), 350);
+    hoverTimeout.current = setTimeout(() => setProductsOpen(false), 200);
   };
 
   const NavLinks = ({ className, onSelect, variant = 'desktop' }) => (
     <div className={className}>
       {navigation.map((item, idx) => {
-        const isActive = idx === 0 ? location.pathname === '/' : location.pathname === item.url;
+        const isActive = idx === 0 
+          ? location.pathname === '/' 
+          : idx === 2 
+          ? location.pathname === '/products' || location.pathname.startsWith('/products/')
+          : location.pathname === item.url;
         const base =
           'flex items-center justify-center gap-2 rounded-full px-3.5 py-2 transition text-[12px] font-semibold uppercase tracking-[0.18em]';
         const inactive = 'text-[#0b1c2c] hover:text-[#02101d] bg-white/70';
         const active = 'text-white bg-[#f12f49] shadow-[0_6px_18px_rgba(241,47,73,0.35)]';
 
         if (item.hasDropdown && variant === 'desktop') {
+          const productsLink = location.pathname === '/' ? '/#products' : '/products';
           return (
             <div
               key={item.label}
@@ -88,7 +93,7 @@ export default function Header() {
               onMouseLeave={closeProductsWithDelay}
             >
               <Link
-                to="/#products"
+                to={productsLink}
                 onClick={() => {
                   onSelect?.();
                   setProductsOpen(false);
@@ -97,17 +102,17 @@ export default function Header() {
                 className={`${base} ${isActive ? active : inactive}`}
               >
                 {item.label}
-                <ChevronUp className={`h-3 w-3 transition-transform ${productsOpen ? '' : 'rotate-180'}`} />
+                <ChevronUp className={`h-3 w-3 transition-transform duration-300 ease-out ${productsOpen ? 'rotate-0' : 'rotate-180'}`} />
               </Link>
               <div
                 style={{ width: productMenuWidth ? `${productMenuWidth}px` : undefined }}
-                className={`absolute left-1/2 top-full z-30 mt-2 -translate-x-1/2 rounded-xl bg-white/95 p-3 shadow-[0_12px_36px_rgba(11,44,60,0.12)] ring-1 ring-slate-200 transition-all duration-300 ease-out ${
+                className={`absolute left-1/2 top-full z-30 mt-2.5 -translate-x-1/2 rounded-2xl bg-white/10 backdrop-blur-sm p-2 shadow-[0_20px_60px_rgba(0,0,0,0.3)] ring-1 ring-slate-300/80 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col gap-2 ${
                   productsOpen
                     ? 'pointer-events-auto opacity-100 translate-y-0 scale-100'
-                    : 'pointer-events-none opacity-0 -translate-y-1 scale-[0.97]'
+                    : 'pointer-events-none opacity-0 -translate-y-2 scale-[0.95]'
                 }`}
               >
-                {productLinks.map((link) => (
+                {productLinks.map((link, linkIdx) => (
                   <Link
                     key={link.label}
                     to={link.to}
@@ -115,10 +120,15 @@ export default function Header() {
                       onSelect?.();
                       setProductsOpen(false);
                     }}
-                    className="flex items-center justify-between rounded-full px-3.5 py-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0b1c2c] transition hover:bg-white/80"
+                    className="group relative flex items-center justify-center rounded-xl px-4 py-2.5  text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0b1c2c] bg-white/70 transition-all duration-300 ease-out hover:bg-[#f12f49] hover:text-white hover:shadow-[0_4px_12px_rgba(241,47,73,0.25)]"
+                    style={{
+                      animationDelay: productsOpen ? `${linkIdx * 50}ms` : '0ms',
+                    }}
                   >
-                    {link.label}
-                    <ChevronRightIcon className="h-3 w-3 text-[#e31837]" />
+                    <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                      {link.label}
+                    </span>
+                    <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#f12f49] to-[#e31837] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </Link>
                 ))}
               </div>
@@ -138,11 +148,11 @@ export default function Header() {
                 <ChevronUp className={`h-3.5 w-3.5 transition-transform ${productsOpen ? '' : 'rotate-180'}`} />
               </button>
               <div
-                className={`flex flex-col gap-2 overflow-hidden pl-2 transition-all duration-300 ease-out ${
+                className={`flex flex-col gap-2 overflow-hidden pl-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   productsOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
                 }`}
               >
-                {productLinks.map((link) => (
+                {productLinks.map((link, linkIdx) => (
                   <Link
                     key={link.label}
                     to={link.to}
@@ -150,11 +160,17 @@ export default function Header() {
                       onSelect?.();
                       setProductsOpen(false);
                     }}
-                    className={`flex items-center justify-between rounded-full bg-white/80 px-3.5 py-2 text-left text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0b1c2c] transition duration-300 ease-out transform ${
-                      productsOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'
-                    }`}
+                    className={`group relative flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-left text-[12px] font-semibold uppercase tracking-[0.18em] text-[#0b1c2c] transition-all duration-300 ease-out ${
+                      productsOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
+                    } hover:bg-[#f12f49] hover:text-white hover:shadow-[0_4px_12px_rgba(241,47,73,0.25)]`}
+                    style={{
+                      transitionDelay: productsOpen ? `${linkIdx * 50}ms` : '0ms',
+                    }}
                   >
-                    {link.label}
+                    <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                      {link.label}
+                    </span>
+                    <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#f12f49] to-[#e31837] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </Link>
                 ))}
               </div>
