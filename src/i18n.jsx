@@ -83,6 +83,21 @@ export const locales = {
       title: 'Наши продукты',
       subtitle:
         'Выбирая нас, вы получаете не только вкусные и полезные продукты, но и уверенность в их качестве и безопасности.',
+      hero: {
+        title: 'Свежие фрукты',
+      },
+      vegetablesHero: {
+        title: 'Свежие овощи',
+      },
+      filters: {
+        uzbekistan: 'УЗБЕКИСТАН',
+        global: 'ГЛОБАЛЬ',
+      },
+      cta: {
+        title: 'Получите лучшее предложение',
+        description: 'Оставьте заявку для получения предложения, и мы свяжемся с вами в ближайшее время.',
+        button: 'ОСТАВИТЬ ЗАЯВКУ',
+      },
       cards: {
         fruits: {
           title: 'Фрукты',
@@ -564,6 +579,21 @@ export const locales = {
       title: 'Mahsulotlarimiz',
       subtitle:
         'Bizni tanlab, siz nafaqat mazali va sog‘lom mahsulotlarni, balki ularning sifat va xavfsizligiga bo‘lgan ishonchni ham olasiz.',
+      hero: {
+        title: 'Yangi mevalar',
+      },
+      vegetablesHero: {
+        title: 'Yangi sabzavotlar',
+      },
+      filters: {
+        uzbekistan: 'O‘ZBEKISTON',
+        global: 'GLOBAL',
+      },
+      cta: {
+        title: 'Eng yaxshi taklifni oling',
+        description: 'Taklif olish uchun ariza qoldiring va biz siz bilan tez orada bog‘lanamiz.',
+        button: 'ARIZA QOLDIRISH',
+      },
       cards: {
         fruits: {
           title: 'Mevalar',
