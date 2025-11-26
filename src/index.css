@@ -190,6 +190,14 @@ textarea {
   filter: saturate(1.2);
 }
 
+.products-card {
+  border-radius: 32px;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0 round 32px);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
 .why-card {
   position: relative;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(238, 246, 255, 0.92));

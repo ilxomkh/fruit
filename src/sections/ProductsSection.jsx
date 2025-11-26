@@ -32,7 +32,7 @@ export default function ProductsSection() {
               <Link
                 to={card.link}
                 key={card.key}
-                className="group relative block overflow-hidden rounded-[32px] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-2 hover:scale-[1.01] active:scale-[0.995]"
+                className="products-card group relative block overflow-hidden rounded-[32px] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-2 hover:scale-[1.01] active:scale-[0.995]"
               >
                 <img
                   src={card.image}
